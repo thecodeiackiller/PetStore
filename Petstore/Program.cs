@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace Petstore
 {
@@ -6,6 +7,10 @@ namespace Petstore
     {
         static void Main(string[] args)
         {
+            // Declaring and Initializing product class
+            
+            ProductLogic productLogic = new ProductLogic();
+
             string userInput = string.Empty;
             Console.WriteLine("Press 1 to add product");
             Console.WriteLine("Type 'exit' to exit the program after the completion of inserting a new product");
@@ -37,8 +42,11 @@ namespace Petstore
                         product.Material = Console.ReadLine();
                         string material = product.Material;
                         Console.WriteLine();
+                        productLogic.AddProduct(product);
                         Console.WriteLine($"Successfully Inserted:\nProduct Name: {name} \nProduct Description: {description} \nProduct Material: {material}");
                         Console.WriteLine();
+                        Console.WriteLine("All Products:");
+                        productLogic.GetAllProducts();
                     }
                 }
                 catch(Exception ex)
