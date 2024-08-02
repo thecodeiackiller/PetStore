@@ -13,7 +13,9 @@ namespace Petstore
 
             string userInput = string.Empty;
             Console.WriteLine("Press 1 to add product");
-            Console.WriteLine("Type 'exit' to exit the program after the completion of inserting a new product");
+            Console.WriteLine("Press 2 to search for product by name");
+            Console.WriteLine("Type 'exit' to exit the program");
+            
 
             while (userInput.ToLower() != "exit")
             {
@@ -24,9 +26,9 @@ namespace Petstore
                     // If user input is different from what we would expect, lets use try catch for practice
 
                     // Need to add functionality to ask for how many products you want to enter, then create a for loop from that point on.
-                    if(userInput != "1" && userInput.ToLower() != "exit")
+                    if(userInput != "1" && userInput.ToLower() != "exit" && userInput != "2")
                     {
-                        throw new Exception("Follow directions shithead. Enter 1 to add a product or enter 'exit' to end the program.");
+                        throw new Exception("Enter 1 to add a new product or enter 'exit' to end the program.");
                     }
 
                     if (userInput == "1")
@@ -47,6 +49,25 @@ namespace Petstore
                         Console.WriteLine();
                         Console.WriteLine("All Products:");
                         productLogic.GetAllProducts();
+
+                        Console.WriteLine();
+                        Console.WriteLine("Press 1 to add product");
+                        Console.WriteLine("Press 2 to search for product by name");
+                        Console.WriteLine("Type 'exit' to exit the program");
+
+                    }
+                    else if(userInput == "2")
+                    {
+                        Console.WriteLine("Enter the name of the dog leash:");
+
+                        Console.WriteLine();
+                        DogLeash dogLeash = productLogic.GetDogLeashByName(Console.ReadLine());
+                        Console.WriteLine($"Name: {dogLeash.Name}\nMaterial: {dogLeash.Material}");
+
+                        Console.WriteLine();
+                        Console.WriteLine("Press 1 to add product");
+                        Console.WriteLine("Press 2 to search for product by name");
+                        Console.WriteLine("Type 'exit' to exit the program");
                     }
                 }
                 catch(Exception ex)
