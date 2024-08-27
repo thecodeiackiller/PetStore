@@ -14,6 +14,9 @@ namespace Petstore
             string userInput = string.Empty;
             Console.WriteLine("Press 1 to add product");
             Console.WriteLine("Press 2 to search for product by name");
+            Console.WriteLine("Press 8 to view all products");
+            Console.WriteLine("Press 9 to view only in stock items");
+            Console.WriteLine("Press 10 to view OUT OF stock items");
             Console.WriteLine("Type 'exit' to exit the program");
             
 
@@ -26,7 +29,12 @@ namespace Petstore
                     // If user input is different from what we would expect, lets use try catch for practice
 
                     // Need to add functionality to ask for how many products you want to enter, then create a for loop from that point on.
-                    if(userInput != "1" && userInput.ToLower() != "exit" && userInput != "2")
+                    if(userInput != "1" && 
+                        userInput.ToLower() != "exit" && 
+                        userInput != "2" && 
+                        userInput != "8" && 
+                        userInput != "9" &&
+                        userInput != "10")
                     {
                         throw new Exception("Enter 1 to add a new product or enter 'exit' to end the program.");
                     }
@@ -68,6 +76,18 @@ namespace Petstore
                         Console.WriteLine("Press 1 to add product");
                         Console.WriteLine("Press 2 to search for product by name");
                         Console.WriteLine("Type 'exit' to exit the program");
+                    }
+                    else if(userInput == "8")
+                    {
+                        productLogic.GetAllProducts();
+                    }
+                    else if (userInput == "9")
+                    {
+                        productLogic.GetInStockItems();
+                    }
+                    else if( userInput == "10")
+                    {
+                        productLogic.GetOutOfStockItems();
                     }
                 }
                 catch(Exception ex)
