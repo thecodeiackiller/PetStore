@@ -88,7 +88,7 @@ using System.Text;
 
             foreach(string product in outofItems)
             {
-                Console.WriteLine(product + " is out of stock! We apologize for the inconvenience. Just kidding, we could care less about you");
+                Console.WriteLine(product + " is out of stock! We apologize for the inconvenience. Just kidding, we could care less about you.");
             }
         }
     }
