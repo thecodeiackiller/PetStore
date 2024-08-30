@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Xml.Linq;
+using PriceChanges.Extensions;
 
 namespace Petstore
 {
@@ -13,7 +14,7 @@ namespace Petstore
 
             string userInput = string.Empty;
             Console.WriteLine("Press 1 to add product");
-            Console.WriteLine("Press 2 to search for product by name");
+            Console.WriteLine("Press 2 to search for product details by name");
             Console.WriteLine("Press 8 to view all products");
             Console.WriteLine("Press 9 to view only in stock items");
             Console.WriteLine("Press 10 to view OUT OF stock items");
@@ -70,12 +71,16 @@ namespace Petstore
 
                         Console.WriteLine();
                         DogLeash dogLeash = productLogic.GetDogLeashByName(Console.ReadLine());
-                        Console.WriteLine($"Name: {dogLeash.Name}\nMaterial: {dogLeash.Material}");
+                        Console.WriteLine($"Name: {dogLeash.Name}\nMaterial: {dogLeash.Material}\nPrice: {dogLeash.Price}");
+                        // Need to also print the price of the product per the extension method instructions
+                        //Console.WriteLine($"Discounted Price for {dogLeash.Name} : ${DecimalExtensions.ToDecimal(dogLeash.Price)}"); Commenting this out but leaving for comparability with the Extension Mehtod
+                        Console.WriteLine($"Discounted Price for {dogLeash.Name} : ${dogLeash.Price.DiscountThisPrice()}"); // And we can do this because we have extended the decimal type which is a primitive type 
 
-                        Console.WriteLine();
                         Console.WriteLine("Press 1 to add product");
                         Console.WriteLine("Press 2 to search for product by name");
                         Console.WriteLine("Type 'exit' to exit the program");
+
+                        
                     }
                     else if(userInput == "8")
                     {

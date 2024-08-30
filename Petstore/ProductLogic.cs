@@ -21,8 +21,8 @@ using System.Text;
             this._dogLeash = new Dictionary<string, DogLeash>();
             this._catsFood = new Dictionary<string, CatFood>();
 
-            AddProduct(new Product { Name = "Leather Leash", Price = 26.99M, Quantity = 5 }); // This is object initializer syntax
-            AddProduct(new Product { Name = "Beddazzled Leash", Price = 50.00M, Quantity = 0 });
+            AddProduct(new DogLeash { Name = "Leather Leash", Price = 26.99M, Quantity = 5 }); // This is object initializer syntax
+            AddProduct(new DogLeash { Name = "Beddazzled Leash", Price = 50.00M, Quantity = 0 });
         }
 
         public void AddProduct(Product product)
