@@ -12,7 +12,7 @@ namespace Petstore
             ProductLogic productLogic = new ProductLogic();
             IUILogic userDoingStuff = new UserInput();
 
-            userDoingStuff.ListUserOptions();
+            userDoingStuff.ListUserInputOptions();
             userDoingStuff.GetUserInput();
             userDoingStuff.ExecuteUserInput();
             
