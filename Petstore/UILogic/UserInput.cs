@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using PriceChanges.Extensions;
 namespace Petstore.UILogic
 {
-    public class UserInputLogic : IUILogic
+    public class UserInput : IUILogic
     {
         public static string userInput { get; set; }
         Product product = new Product();
