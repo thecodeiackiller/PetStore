@@ -10,9 +10,10 @@ namespace Petstore.UILogic
     public class UserInput : IUILogic
     {
         public static string userInput { get; set; }
+        List<string> validUserInputs = new List<string> { "1", "2", "8", "9", "10", "exit"};
         Product product = new Product();
         
-        public void ListUserOptions()
+        public void ListUserInputOptions()
         {
             Console.WriteLine("Press 1 to add product");
             Console.WriteLine("Press 2 to search for product details by name");
@@ -27,18 +28,14 @@ namespace Petstore.UILogic
             
             string input = Console.ReadLine();
 
-            if (input != "1" &&
-                        input.ToLower() != "exit" &&
-                        input != "2" &&
-                        input != "8" &&
-                        input != "9" &&
-                        input != "10")
+            if (validUserInputs.Contains(input.ToLower()))
             {
-                throw new Exception("Enter 1,2,8,9,10 or type 'exit' to end the program.");
+                
+                userInput = input;
             }
             else
             {
-                userInput = input;
+                throw new Exception("Enter 1,2,8,9,10 or type 'exit' to end the program.");
             }
         }
 
@@ -106,7 +103,7 @@ namespace Petstore.UILogic
                         break;
                 }
             
-            ListUserOptions();
+            ListUserInputOptions();
             GetUserInput();
             ExecuteUserInput();
         }        
