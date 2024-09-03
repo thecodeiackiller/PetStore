@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Petstore
 {
-    internal class DryCatFood : CatFood
+    public class DryCatFood : CatFood
     {
         public double WeightPounds { get; set; }
     }
