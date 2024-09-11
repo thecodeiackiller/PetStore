@@ -12,7 +12,8 @@ namespace Petstore.UILogic
         public static string userInput { get; set; }
         List<string> validUserInputs = new List<string> { "1", "2", "8", "9", "10", "exit"};
         Product product = new Product();
-        
+        ProductLogic productLogic = new ProductLogic();
+
         public void ListUserInputOptions()
         {
             Console.WriteLine("Press 1 to add product");
@@ -40,12 +41,8 @@ namespace Petstore.UILogic
         }
 
         public void ExecuteUserInput() 
-            // Ran into a massive issue here. Initially defined the method to take in "string userInput"
-            // By declaring the parameter with "string," I was creating a brand new variable, which shadowed the global static userInput variable.
-            // This was super confusing, but ultimately, since we were using a switch case statement on the userInput variable, we should have originally defined the method to return nothing and simply implement the switch statement
-            // Alas, when we encounter exit, we return which exits the method and pops the method off the call stack.
         {
-            ProductLogic productLogic = new ProductLogic();
+            
             
                 switch (userInput)
                 {
@@ -62,7 +59,7 @@ namespace Petstore.UILogic
                         product.Material = Console.ReadLine();
                         string material = product.Material;
                         Console.WriteLine();
-                        productLogic.AddProduct(product);
+                        productLogic.AddProduct(product as DogLeash);
                         Console.WriteLine($"Successfully Inserted:\nProduct Name: {name} \nProduct Description: {description} \nProduct Material: {material}");
                         Console.WriteLine();
                         Console.WriteLine("All Products:");
@@ -75,9 +72,7 @@ namespace Petstore.UILogic
                         Console.WriteLine();
                         DogLeash dogLeash = productLogic.GetDogLeashByName(Console.ReadLine());
                         Console.WriteLine($"Name: {dogLeash.Name}\nMaterial: {dogLeash.Material}\nPrice: {dogLeash.Price}");
-                        // Need to also print the price of the product per the extension method instructions
-                        //Console.WriteLine($"Discounted Price for {dogLeash.Name} : ${DecimalExtensions.ToDecimal(dogLeash.Price)}"); Commenting this out but leaving for comparability with the Extension Mehtod
-                        Console.WriteLine($"Discounted Price for {dogLeash.Name} : ${dogLeash.Price.DiscountThisPrice()}"); // And we can do this because we have extended the decimal type which is a primitive type 
+                        Console.WriteLine($"Discounted Price for {dogLeash.Name} : ${dogLeash.Price.DiscountThisPrice()}");
                         
                         break;
 
@@ -99,7 +94,6 @@ namespace Petstore.UILogic
 
                     default:
                         Console.WriteLine("Boy, you done EFFED up!");
-                        // Might need to implement a try catch block here for any exception that may occur
                         break;
                 }
             

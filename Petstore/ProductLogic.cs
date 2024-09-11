@@ -10,8 +10,7 @@ using System.Text;
     internal class ProductLogic : IProductLogic
     {
 
-        private List<Product> _products; // The underscore before products is typical syntax to let everybody know that the variable is private. 
-                                         // The variable being private is a form of encapsulation. The variable is only accessible to this class, the ProductLogic class
+        private List<Product> _products; 
         private Dictionary<string, DogLeash> _dogLeash;
         private Dictionary<string, CatFood> _catsFood;
 
@@ -29,17 +28,17 @@ using System.Text;
         {
             this._products.Add(product);
 
-            if (product is DogLeash)  // Wow, using the keyword "is" is new. Didn't know we could do that. Nevertheless, this is called Type Checking. 
+            if (product is DogLeash)   
             {
-                this._dogLeash.Add(product.Name, product as DogLeash); // We are casting the product that was passed in as a DogLeash so deez folks know what we're referencing
+                this._dogLeash.Add(product.Name, product as DogLeash); 
             }
 
             if (product is CatFood)
             {
-                this._catsFood.Add(product.Name, product as CatFood); // Again, casting the product we passed in as CatFood. 
+                this._catsFood.Add(product.Name, product as CatFood); 
             }
         }
-        // Adding a dictionary to this class and adding key value pairs to the dictionary within the AddProduct class is an important lesson when it comes to polymorphism, types, and inheritance
+        
     
         
         public void GetAllProducts()
@@ -62,7 +61,7 @@ using System.Text;
             }                      
         }
 
-        // Going to define the GetInStockItems here because that's what I'm assuming they want us to do
+   
         public void GetInStockItems()
         {
             List<string> productsAsStrings = new List<string>();

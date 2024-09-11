@@ -13,7 +13,7 @@ namespace Petstore
         public DogLeash GetDogLeashByName(string name);
         public void AddProduct(Product product);
 
-        public void GetInStockItems(); // Defining this method before looking further into instructions
+        public void GetInStockItems();
         public void GetOutOfStockItems();
 
     }
