@@ -10,5 +10,7 @@ namespace Petstore
     {
         public int LengthInches { get; set; }
         public string Material { get; set; }
+
+        // Need to add a validator for dog leash here
     }
 }
