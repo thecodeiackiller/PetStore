@@ -10,7 +10,7 @@ namespace Petstore
     {
 
         public void GetAllProducts();
-        public DogLeash GetDogLeashByName(string name);
+        public T GetProductByNameGenericMethod<T>(string name) where T : Product;
         public void AddProduct(Product product);
 
         public void GetInStockItems();

@@ -4,6 +4,7 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
     using System.Threading.Tasks;
+using System.Text.Json;
 
     namespace Petstore
     {
@@ -26,17 +27,23 @@ using System.Text;
 
         public void AddProduct(Product product)
         {
-            this._products.Add(product);
+            // Need to create validation class instantiation here and put everything in a try catch block
+            // Throw Validation Exception if the results have errors and then print the errors that we encountered for extra pudding.
+           
+                this._products.Add(product);
 
-            if (product is DogLeash)   
-            {
-                this._dogLeash.Add(product.Name, product as DogLeash); 
-            }
+                if (product is DogLeash)
+                {
+                    this._dogLeash.Add(product.Name, product as DogLeash);
+                }
 
-            if (product is CatFood)
-            {
-                this._catsFood.Add(product.Name, product as CatFood); 
-            }
+                if (product is CatFood)
+                {
+                    this._catsFood.Add(product.Name, product as CatFood);
+                }
+            
+
+            
         }
         
     
@@ -49,19 +56,29 @@ using System.Text;
             }
         }
 
-        public DogLeash GetDogLeashByName(string name)
-        {
-            if(this._dogLeash.ContainsKey(name))
-            {
-                return _dogLeash[name];
-            }
-            else
-            {
-                throw new Exception("Cannot find product. Please enter new name or add new Dog Leash product.");
-            }                      
-        }
+        //public DogLeash GetDogLeashByName(string name)
+        //{
+        //    if(this._dogLeash.ContainsKey(name))
+        //    {
+        //        return _dogLeash[name];
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Cannot find product. Please enter new name or add new Dog Leash product.");
+        //    }                      
+        //}
 
-   
+        public T GetProductByNameGenericMethod<T>(string name) where T : Product
+        {
+            foreach(Product product in _products)
+            {
+                if(product.Name == name)
+                {
+                    return (T)product;
+                }
+            }
+            return null;
+        }
         public void GetInStockItems()
         {
             List<string> productsAsStrings = new List<string>();
