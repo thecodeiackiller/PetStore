@@ -36,11 +36,13 @@ namespace Petstore.UILogic
 
             if (validUserInputs.Contains(input.ToLower()))
             {
-                
+
                 userInput = input;
             }
             else
+                
             {
+                userInput = null;
                 Console.WriteLine("Enter 1,2,8,9,10 or type 'exit' to end the program.");
             }
         }
@@ -120,6 +122,8 @@ namespace Petstore.UILogic
                         break;
 
                     case "8":
+                    Console.WriteLine();
+                    Console.WriteLine("All Products:");
                         productLogic.GetAllProducts();
                         
                         break;
@@ -136,7 +140,6 @@ namespace Petstore.UILogic
                     return;
 
                     default:
-                        Console.WriteLine("Boy, you done EFFED up!");
                         break;
                 }
             

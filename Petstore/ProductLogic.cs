@@ -74,8 +74,12 @@ using System.Text.Json;
             {
                 if(product.Name == name)
                 {
-                    return (T)product;
+                    if(product.GetType() == typeof(T))
+                    {
+                        return (T)product;
+                    }
                 }
+                
             }
             return null;
         }
