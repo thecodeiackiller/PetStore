@@ -5,8 +5,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
     using System.Threading.Tasks;
 using System.Text.Json;
+using PetStore.Data;
 
-    namespace Petstore
+namespace Petstore
     {
     internal class ProductLogic : IProductLogic
     {
@@ -15,8 +16,14 @@ using System.Text.Json;
         private Dictionary<string, DogLeash> _dogLeash;
         private Dictionary<string, CatFood> _catsFood;
 
-        public ProductLogic()
+        // We are creating a private readonly variable with the type being the interface for the repository class
+        private readonly IProductRepository _repository; // This is going to allow us to add products into the database. 
+        // My only worry here is that our original Product.cs entity doesn't have Id. So we might have to use Identity or AutoGenerate to populate an Id.
+
+
+        public ProductLogic(IProductRepository repository)
         {
+            this._repository = repository;
             this._products = new List<Product>();
             this._dogLeash = new Dictionary<string, DogLeash>();
             this._catsFood = new Dictionary<string, CatFood>();
