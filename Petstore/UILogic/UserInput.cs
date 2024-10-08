@@ -8,15 +8,28 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FluentValidation;
 using Petstore.DogLeashValidator;
+using PetStore.Data;
 using PriceChanges.Extensions;
+
 namespace Petstore.UILogic
 {
     public class UserInput : IUILogic
     {
+        private readonly IProductRepository? productRepository;
         public static string userInput { get; set; }
         List<string> validUserInputs = new List<string> { "1", "2", "8", "9", "10", "exit"};
         Product product = new Product();
-        ProductLogic productLogic = new ProductLogic();
+
+
+        ProductLogic productLogic;
+
+        public UserInput(IProductRepository? productRepository, List<string> validUserInputs, Product product, ProductLogic productLogic)
+        {
+            this.productRepository = productRepository;
+            this.validUserInputs = validUserInputs;
+            this.product = product;
+            this.productLogic = new ProductLogic(productRepository);
+        }
 
         public void ListUserInputOptions()
         {

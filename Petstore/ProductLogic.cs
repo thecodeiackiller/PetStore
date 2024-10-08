@@ -9,9 +9,9 @@ using PetStore.Data;
 
 namespace Petstore
     {
-    internal class ProductLogic : IProductLogic
+    public class ProductLogic : IProductLogic
     {
-
+        private readonly IProductRepository _productRepository;
         private List<Product> _products; 
         private Dictionary<string, DogLeash> _dogLeash;
         private Dictionary<string, CatFood> _catsFood;
@@ -21,9 +21,9 @@ namespace Petstore
         // My only worry here is that our original Product.cs entity doesn't have Id. So we might have to use Identity or AutoGenerate to populate an Id.
 
 
-        public ProductLogic(IProductRepository repository)
+        public ProductLogic(IProductRepository productRepository)
         {
-            this._repository = repository;
+            this._productRepository = productRepository;
             this._products = new List<Product>();
             this._dogLeash = new Dictionary<string, DogLeash>();
             this._catsFood = new Dictionary<string, CatFood>();
