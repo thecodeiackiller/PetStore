@@ -24,12 +24,9 @@ namespace Petstore.UILogic
 
         ProductLogic productLogic;
 
-        public UserInput(IProductRepository? productRepository, List<string> validUserInputs, Product product, ProductLogic productLogic)
+        public UserInput(IProductRepository? productRepository)
         {
             this.productRepository = productRepository;
-            this.validUserInputs = validUserInputs;
-            this.product = product;
-            this.productLogic = new ProductLogic(productRepository);
         }
 
         public void ListUserInputOptions()

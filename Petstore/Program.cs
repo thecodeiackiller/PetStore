@@ -17,7 +17,7 @@ namespace Petstore
         static void Main(string[] args)
         {
 
-            var productlogic = service.GetService<IProductLogic>();
+            
             // Resolving our service
             var userInput = service.GetService<IUILogic>();
             // Calling methods from UserInput class (i.e. using our service through DI)
@@ -28,7 +28,6 @@ namespace Petstore
                 userInput.ExecuteUserInput();
             }
             return;
-            
 
         }
 
@@ -43,7 +42,7 @@ namespace Petstore
             // Configuring Services here
             newServiceCollection.AddTransient<IProductLogic, ProductLogic>(); // AddTransient is used here to say a new instance of the service is created everytime its requested
             newServiceCollection.AddTransient<IUILogic, UserInput>(); // There are other method such as AddSingleton that ultimately define the state of the service when called
-            newServiceCollection.AddSingleton<IProductRepository,ProductRepository>(); //We added a Singleton so the Service would be available for the entire lifetime of the application. 
+            newServiceCollection.AddTransient<IProductRepository,ProductRepository>(); //We added a Singleton so the Service would be available for the entire lifetime of the application. 
 
 
             return newServiceCollection.BuildServiceProvider();
