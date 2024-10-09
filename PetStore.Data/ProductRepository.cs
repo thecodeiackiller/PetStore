@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Petstore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,10 @@ namespace PetStore.Data
         // Now that we have created a dbcontext instance, we can begin querying our database
         // We need to add a method add a product to the database. Let's first define that method in the IProductRepository interface
         // Now that we've implemented the interface, let's go ahead and use the commands from EFCore that we have at our fingertips to add a product to our dbcontext
-        public void addProduct(ProductEntity prodEntity)
+        public void addProduct(Product prodEntity)
         {
-            _db.Products.Add(prodEntity); // Did not have Products here at first but upon watching the videos it makes sense to add a Product to our products table. 
-            _db.SaveChanges(); // Should be good to go now.
-            // Typically, if we weren't using a console app, we'd use a RedirectToAction method to redirect the user to index.html or whatever page so that they don't submit twice.
+                _db.Products.Add(prodEntity); // Did not have Products here at first but upon watching the videos it makes sense to add a Product to our products table. 
+                _db.SaveChanges(); // Should be good to go now. // Typically, if we weren't using a console app, we'd use a RedirectToAction method to redirect the user to index.html or whatever page so that they don't submit twice. 
         }
 
 
@@ -35,13 +35,13 @@ namespace PetStore.Data
         // Let's go ahead and define those in our IProductRepository
 
 
-        public List<ProductEntity> getAllProducts()
+        public List<Product> getAllProducts()
         {
             var products = _db.Products.ToList();
             return products;
         }
 
-        public ProductEntity getProductById(int productId)
+        public Product getProductById(int productId)
         {
             var product = _db.Products.Where(e => e.Id == productId).FirstOrDefault();
 

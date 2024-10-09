@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
+using Petstore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

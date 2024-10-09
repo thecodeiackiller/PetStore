@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Petstore.Models;
 
 namespace PetStore.Data
 {
     public class ProductContext : DbContext 
     {
-        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         private string? DbPath { get;} // Unlike other databases where we connect to a server through a connection string, we'll setup an actually path to the SQLite context as it is file based
 

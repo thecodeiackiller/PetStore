@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Petstore.Models\Petstore.Models.csproj" />
+  </ItemGroup>
+
 </Project>

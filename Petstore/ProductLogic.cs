@@ -6,6 +6,7 @@ using System.Text;
     using System.Threading.Tasks;
 using System.Text.Json;
 using PetStore.Data;
+using Petstore.Models;
 
 namespace Petstore
     {
@@ -36,21 +37,22 @@ namespace Petstore
         {
             // Need to create validation class instantiation here and put everything in a try catch block
             // Throw Validation Exception if the results have errors and then print the errors that we encountered for extra pudding.
-           
-                this._products.Add(product);
 
-                if (product is DogLeash)
-                {
-                    this._dogLeash.Add(product.Name, product as DogLeash);
-                }
+            _productRepository.addProduct(product); // Now when we press one and "Add" a new product, we'll be adding it to the db.
 
-                if (product is CatFood)
-                {
-                    this._catsFood.Add(product.Name, product as CatFood);
-                }
-            
+            this._products.Add(product);
 
-            
+            if (product is DogLeash)
+            {
+                this._dogLeash.Add(product.Name, product as DogLeash);
+            }
+
+            if (product is CatFood)
+            {
+                this._catsFood.Add(product.Name, product as CatFood);
+            }
+
+            // Need to replace the above code with a call to the repositories add method. We are going to keep the code just to reference what we were doing, though. 
         }
         
     

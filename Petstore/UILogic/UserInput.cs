@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FluentValidation;
 using Petstore.DogLeashValidator;
+using Petstore.Models;
 using PetStore.Data;
 using PriceChanges.Extensions;
 
