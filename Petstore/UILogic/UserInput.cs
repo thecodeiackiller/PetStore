@@ -20,19 +20,19 @@ namespace Petstore.UILogic
         public static string userInput { get; set; }
         List<string> validUserInputs = new List<string> { "1", "2", "8", "9", "10", "exit"};
         Product product = new Product();
-
-
         ProductLogic productLogic;
 
         public UserInput(IProductRepository? productRepository)
         {
             this.productRepository = productRepository;
+            
         }
+        
 
         public void ListUserInputOptions()
         {
             Console.WriteLine();
-            Console.WriteLine("Press 1 to add product through JSON payload");
+            Console.WriteLine("Press 1 to add product to the database (and potentially to in memory data structure");
             Console.WriteLine("Press 2 to search for product details by name");
             Console.WriteLine("Press 8 to view all products");
             Console.WriteLine("Press 9 to view only in stock items");
@@ -42,7 +42,6 @@ namespace Petstore.UILogic
 
         public void GetUserInput()
         {
-            
             string input = Console.ReadLine();
 
             if (validUserInputs.Contains(input.ToLower()))
@@ -65,44 +64,27 @@ namespace Petstore.UILogic
                 switch (userInput)
                 {
                     case "1":
-                    // Instead of taking in each property as input, each property value should be created from JSON
-                    // We could take input in the form of JSON and Deserialize it
-                    // We know there are HttpClient, HttpRequest, JsonNode, JsonDocument
-                    // Ultimately need to figure out which class gives us the method to deserialize the JSON
+                    // Not going to worry about validation here for now
+                    // We need to store input (Name, Quantity, Description, etc) into the actual Product fields to ultimately a
+                    Console.WriteLine("Lets add a product to the db.");
+                    Product prod = new Product();
 
-                    // So let's use our validator. At this point in writing this, we haven't dealt with JSON
-                    DogLeashValidator.DogLeashValidator validate = new DogLeashValidator.DogLeashValidator();
+                    Console.WriteLine("Insert product name:");
+                    prod.Name =  Console.ReadLine();
 
-                    var jsonPayload = Console.ReadLine();
-                    var dogleashObject = JsonSerializer.Deserialize<DogLeash>(jsonPayload);
+                    //Console.WriteLine("Insert price");
+                    //prod.Price = decimal.Parse(Console.ReadLine()); 
 
-                    FluentValidation.Results.ValidationResult result = validate.Validate(dogleashObject);
+                    Console.WriteLine("Insert product quantity:");
+                    prod.Quantity = int.Parse(Console.ReadLine());
 
-                    if (result.IsValid)
-                    {
-                        productLogic.AddProduct(dogleashObject);
-                        Console.WriteLine($"Products Entered:\n Name: {dogleashObject.Name}\n Price: {dogleashObject.Price}\n" +
-                            $"Quantity: {dogleashObject.Quantity}\n Description: {dogleashObject.Description}");
-                    }
-                    else
-                    {
-                        foreach (var error in result.Errors)
-                        {
-                            Console.WriteLine($"Error: {error}");
-                        }
-                        // Per instructions, throw a ValidationException here
-                    }
+                    Console.WriteLine("Insert product description:");
+                    prod.Description = Console.ReadLine();
 
-
-
-
-                    // Whatever we put in the Console.Readline will be in the form of JSON
-                    // We have to match, or serialize that JSON in the form of the properties within our DogLeash class and from the Product class it inherits from
-
-
-
-                    productLogic.GetAllProducts();
-                        // TODO: Need to Use the validator in the add method in ProductLogic. Throw a ValidationException if the DogLeash isn't valid.
+                    // productLogic.AddProduct(prod);
+                    productRepository.addProduct(prod);
+                    
+                    // productLogic.GetAllProducts();
                         break;
                     case "2":
                         Console.WriteLine("Please enter name of product");

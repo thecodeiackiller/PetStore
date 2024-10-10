@@ -27,7 +27,17 @@ namespace PetStore.Data
         public void addProduct(Product prodEntity)
         {
                 _db.Products.Add(prodEntity); // Did not have Products here at first but upon watching the videos it makes sense to add a Product to our products table. 
-                _db.SaveChanges(); // Should be good to go now. // Typically, if we weren't using a console app, we'd use a RedirectToAction method to redirect the user to index.html or whatever page so that they don't submit twice. 
+            int result = _db.SaveChanges(); // This saves the changes to the database
+
+            if (result > 0)
+            {
+                Console.WriteLine("Product successfully added.");
+            }
+            else
+            {
+                Console.WriteLine("Failed to add product.");
+            }
+            
         }
 
 

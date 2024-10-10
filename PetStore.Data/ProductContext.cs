@@ -13,6 +13,7 @@ namespace PetStore.Data
         public ProductContext(DbContextOptions<ProductContext> options)
             : base(options) // Pass options to the base DbContext class
         {
+            //Database.EnsureCreated();
         }
 
         // If you want to use the path logic, we can still use the OnConfiguring method, but this is optional now
