@@ -77,20 +77,9 @@ namespace Petstore
         //    }                      
         //}
 
-        public T GetProductByNameGenericMethod<T>(string name) where T : Product
+        public void GetProductById(int Id)
         {
-            foreach(Product product in _products)
-            {
-                if(product.Name == name)
-                {
-                    if(product.GetType() == typeof(T))
-                    {
-                        return (T)product;
-                    }
-                }
-                
-            }
-            return null;
+            // We changed this method, but we really didn't need to. All we have to do is call the method from the ProductRepository.
         }
         public void GetInStockItems()
         {

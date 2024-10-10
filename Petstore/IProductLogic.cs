@@ -12,7 +12,6 @@ namespace Petstore
     {
 
         public void GetAllProducts();
-        public T GetProductByNameGenericMethod<T>(string name) where T : Product;
         public void AddProduct(Product product);
 
         public void GetInStockItems();

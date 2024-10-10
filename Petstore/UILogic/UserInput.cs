@@ -33,7 +33,7 @@ namespace Petstore.UILogic
         {
             Console.WriteLine();
             Console.WriteLine("Press 1 to add product to the database (and potentially to in memory data structure");
-            Console.WriteLine("Press 2 to search for product details by name");
+            Console.WriteLine("Press 2 to search for product details by Id");
             Console.WriteLine("Press 8 to view all products");
             Console.WriteLine("Press 9 to view only in stock items");
             Console.WriteLine("Press 10 to view OUT OF stock items");
@@ -87,17 +87,16 @@ namespace Petstore.UILogic
                     // productLogic.GetAllProducts();
                         break;
                     case "2":
-                        Console.WriteLine("Please enter name of product");
-
-                    var product = productLogic.GetProductByNameGenericMethod<DogLeash>(Console.ReadLine());
-                    
+                        Console.WriteLine("Please enter Id of product");
+                    int productId = int.Parse(Console.ReadLine());
+                    var product = productRepository.getProductById(productId);
 
                     try
                     {
                         if(product != null)
                         {
                             // We also might want to consider printing out the properties of the dogleash whos name we provided.
-                            Console.WriteLine($"Name: {product.Name}\n Material: {product.Material}\n Price: {product.Price}\n Quantity: {product.Quantity}");
+                            Console.WriteLine($"Name: {product.Name}\n Price: {product.Price}\n Quantity: {product.Quantity}");
                             Console.WriteLine($"Description: {product.Description}");
                         }
                         else
