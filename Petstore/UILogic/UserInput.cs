@@ -18,7 +18,7 @@ namespace Petstore.UILogic
     {
         private readonly IProductRepository? productRepository;
         public static string userInput { get; set; }
-        List<string> validUserInputs = new List<string> { "1", "2", "8", "9", "10", "exit"};
+        List<string> validUserInputs = new List<string> { "1", "2", "exit"};
         Product product = new Product();
         ProductLogic productLogic;
 
@@ -34,9 +34,6 @@ namespace Petstore.UILogic
             Console.WriteLine();
             Console.WriteLine("Press 1 to add product to the database (and potentially to in memory data structure");
             Console.WriteLine("Press 2 to search for product details by Id");
-            Console.WriteLine("Press 8 to view all products");
-            Console.WriteLine("Press 9 to view only in stock items");
-            Console.WriteLine("Press 10 to view OUT OF stock items");
             Console.WriteLine("Type 'exit' to exit the program");
         }
 
@@ -53,7 +50,7 @@ namespace Petstore.UILogic
                 
             {
                 userInput = null;
-                Console.WriteLine("Enter 1,2,8,9,10 or type 'exit' to end the program.");
+                Console.WriteLine("Enter 1,2, or type 'exit' to end the program.");
             }
         }
 
@@ -113,20 +110,6 @@ namespace Petstore.UILogic
                        
                         break;
 
-                    case "8":
-                    Console.WriteLine();
-                    Console.WriteLine("All Products:");
-                        productLogic.GetAllProducts();
-                        
-                        break;
-                    case "9":
-                        productLogic.GetInStockItems();
-                        
-                        break;
-                    case "10":
-                        productLogic.GetOutOfStockItems();
-                        
-                        break;
 
                     case "exit":
                     return;

@@ -10,12 +10,6 @@ namespace Petstore
 {
     internal interface IProductLogic
     {
-
-        public void GetAllProducts();
         public void AddProduct(Product product);
-
-        public void GetInStockItems();
-        public void GetOutOfStockItems();
-
     }
 }
