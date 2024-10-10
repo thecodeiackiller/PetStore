@@ -5,7 +5,7 @@
 namespace PetStore.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddingInitialProductSchema : Migration
+    public partial class InitialMigrationToRelProductDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

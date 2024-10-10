@@ -10,8 +10,8 @@ using PetStore.Data;
 namespace PetStore.Data.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20241008202736_AddingInitialProductSchema")]
-    partial class AddingInitialProductSchema
+    [Migration("20241010200402_InitialMigrationToRelProductDb")]
+    partial class InitialMigrationToRelProductDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace PetStore.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("PetStore.Data.ProductEntity", b =>
+            modelBuilder.Entity("Petstore.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

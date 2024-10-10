@@ -6,6 +6,7 @@ using PriceChanges.Extensions;
 using PetStore.Data;
 
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace Petstore
 {
@@ -16,8 +17,6 @@ namespace Petstore
 
         static void Main(string[] args)
         {
-
-            
             // Resolving our service
             var userInput = service.GetService<IUILogic>();
             // Calling methods from UserInput class (i.e. using our service through DI)
@@ -43,6 +42,8 @@ namespace Petstore
             newServiceCollection.AddTransient<IProductLogic, ProductLogic>(); // AddTransient is used here to say a new instance of the service is created everytime its requested
             newServiceCollection.AddTransient<IUILogic, UserInput>(); // There are other method such as AddSingleton that ultimately define the state of the service when called
             newServiceCollection.AddTransient<IProductRepository,ProductRepository>(); //We added a Singleton so the Service would be available for the entire lifetime of the application. 
+
+            newServiceCollection.AddDbContext<ProductContext>(options => options.UseSqlite("Data Source=products.db"));
 
 
             return newServiceCollection.BuildServiceProvider();
