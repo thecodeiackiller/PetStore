@@ -39,9 +39,9 @@ namespace Petstore
             var newServiceCollection = new ServiceCollection();
 
             // Configuring Services here
-            newServiceCollection.AddTransient<IProductLogic, ProductLogic>(); // AddTransient is used here to say a new instance of the service is created everytime its requested
             newServiceCollection.AddTransient<IUILogic, UserInput>(); // There are other method such as AddSingleton that ultimately define the state of the service when called
             newServiceCollection.AddTransient<IProductRepository,ProductRepository>(); //We added a Singleton so the Service would be available for the entire lifetime of the application. 
+            newServiceCollection.AddTransient<IOrderRepository, OrderRepository>();
 
             newServiceCollection.AddDbContext<ProductContext>(options => options.UseSqlite("Data Source=products.db"));
 

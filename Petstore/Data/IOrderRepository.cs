@@ -1,15 +1,16 @@
 ﻿using Petstore.Models;
-using PetStore.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Petstore
+namespace PetStore.Data
 {
-    internal interface IProductLogic
+    public interface IOrderRepository
     {
-        public void AddProduct(Product product);
+
+        public void addOrder(Order order);
+        public Task<Order> retriveOrderById(int id);
     }
 }
