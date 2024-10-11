@@ -16,15 +16,17 @@ namespace Petstore.UILogic
 {
     public class UserInput : IUILogic
     {
-        private readonly IProductRepository? productRepository;
+        private readonly IProductRepository productRepository;
+        private readonly IOrderRepository orderRepository;
         public static string userInput { get; set; }
-        List<string> validUserInputs = new List<string> { "1", "2", "exit"};
+        List<string> validUserInputs = new List<string> { "1", "2","3", "exit"};
         Product product = new Product();
-        ProductLogic productLogic;
+        
 
-        public UserInput(IProductRepository? productRepository)
+        public UserInput(IProductRepository productRepository, IOrderRepository orderRepository)
         {
             this.productRepository = productRepository;
+            this.orderRepository = orderRepository;
             
         }
         
@@ -34,6 +36,7 @@ namespace Petstore.UILogic
             Console.WriteLine();
             Console.WriteLine("Press 1 to add product to the database (and potentially to in memory data structure");
             Console.WriteLine("Press 2 to search for product details by Id");
+            Console.WriteLine("Press 3 to add product and orders with json");
             Console.WriteLine("Type 'exit' to exit the program");
         }
 
@@ -50,7 +53,7 @@ namespace Petstore.UILogic
                 
             {
                 userInput = null;
-                Console.WriteLine("Enter 1,2, or type 'exit' to end the program.");
+                Console.WriteLine("Enter 1,2,3 or type 'exit' to end the program.");
             }
         }
 
@@ -106,16 +109,18 @@ namespace Petstore.UILogic
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                    }
-                       
-                        break;
+                    }   
+                    break;
 
+                    case "3":
+                    var jsonOrder = JsonSerializer.Deserialize<Order>(Console.ReadLine());
+                    orderRepository.addOrder(jsonOrder);
+                    break;
 
                     case "exit":
                     return;
-
                     default:
-                        break;
+                    break;
                 }
             
             ListUserInputOptions();
