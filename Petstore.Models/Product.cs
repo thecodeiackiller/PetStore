@@ -2,7 +2,7 @@
 
 namespace Petstore.Models
 {
-    // [Table("Products")]
+    [Table("Products")]
     public class Product
     {
         public int Id { get; set; }
