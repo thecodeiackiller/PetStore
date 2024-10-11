@@ -8,6 +8,7 @@ namespace PetStore.Data
     public class ProductContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         //Constructor that accepts DbContextOptions and passes it to the base class
         public ProductContext(DbContextOptions<ProductContext> options)
