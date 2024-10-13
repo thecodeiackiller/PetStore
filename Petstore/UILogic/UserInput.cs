@@ -80,8 +80,10 @@ namespace Petstore.UILogic
 
                     Console.WriteLine("Insert product description:");
                     prod.Description = Console.ReadLine();
-
+                    prod.OrderId = 1;
                     // productLogic.AddProduct(prod);
+                    
+
                     productRepository.addProduct(prod);
                     
                     // productLogic.GetAllProducts();

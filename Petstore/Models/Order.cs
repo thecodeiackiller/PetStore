@@ -13,6 +13,6 @@ namespace Petstore.Models
 
             public int OrderId {  get; set; }
             public DateTime OrderDate { get; set; }
-            public ICollection<Product>? Products { get; set; }
+            public ICollection<Product> Products { get; set; }
     }
 }

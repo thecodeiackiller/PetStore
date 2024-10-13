@@ -26,9 +26,8 @@ namespace Petstore
                 userInput.GetUserInput();
                 userInput.ExecuteUserInput();
             }
-            return;
-
         }
+
 
 
         // DI is typically done through IServiceCollection
@@ -37,15 +36,10 @@ namespace Petstore
         {
             // The entirety of dependency injection is done through services. We create a service first, then we use that service. There are different classes for each.
             var newServiceCollection = new ServiceCollection();
-
-            // Configuring Services here
             newServiceCollection.AddTransient<IUILogic, UserInput>(); // There are other method such as AddSingleton that ultimately define the state of the service when called
             newServiceCollection.AddTransient<IProductRepository,ProductRepository>(); //We added a Singleton so the Service would be available for the entire lifetime of the application. 
             newServiceCollection.AddTransient<IOrderRepository, OrderRepository>();
-
             newServiceCollection.AddDbContext<ProductContext>(options => options.UseSqlite("Data Source=products.db"));
-
-
             return newServiceCollection.BuildServiceProvider();
         }
     }
