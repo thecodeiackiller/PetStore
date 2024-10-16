@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Data
+namespace Petstore.Services
 {
-    public interface IOrderRepository
+    public interface IProductService
     {
-
-        public void addOrder(Order order);
-        public Task<Order> retriveOrderById(int id);
+        void AddProduct(Product product);
+        Product GetProductById(int id);
     }
 }

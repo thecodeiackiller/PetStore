@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Data
+namespace Petstore.Data.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
         private readonly ProductContext _db;
-        
+
         public OrderRepository(ProductContext db)
         {
             _db = db;
@@ -22,11 +22,11 @@ namespace PetStore.Data
             _db.SaveChanges();
         }
 
-        public async Task<Order> retriveOrderById(int id) // Were are interacting with the database and getting something back. Good use for an asynchronous method.
+        public async Task<Order> retriveOrderById(int id)
         {
             return await _db.Orders.Include(e => e.Products).Where(e => e.OrderId == id).FirstOrDefaultAsync();
         }
 
-        
+
     }
 }

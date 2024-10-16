@@ -10,7 +10,6 @@ namespace Petstore.UILogic
     {
         public void ListUserInputOptions();
         public void ExecuteUserInput();
-        public void GetUserInput();
         
     }
 }

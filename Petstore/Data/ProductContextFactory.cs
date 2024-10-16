@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
-using PetStore.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

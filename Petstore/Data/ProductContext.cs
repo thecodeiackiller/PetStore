@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using Petstore.Models;
 
-namespace PetStore.Data
+namespace Petstore.Data
 {
     public class ProductContext : DbContext
     {

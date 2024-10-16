@@ -3,33 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FluentValidation;
+using Petstore.Data;
+using Petstore.Data.Repositories;
 using Petstore.DogLeashValidator;
 using Petstore.Models;
-using PetStore.Data;
+using Petstore.Services;
 using PriceChanges.Extensions;
 
 namespace Petstore.UILogic
 {
     public class UserInput : IUILogic
     {
-        private readonly IProductRepository productRepository;
+        private readonly IProductService productService;
         private readonly IOrderRepository orderRepository;
-        public static string userInput { get; set; }
-        List<string> validUserInputs = new List<string> { "1", "2","3", "exit"};
-        Product product = new Product();
+        private readonly IUserInputRepository userInputRepository;
         
-
-        public UserInput(IProductRepository productRepository, IOrderRepository orderRepository)
+        public UserInput(IProductService productService, IOrderRepository orderRepository, IUserInputRepository userInputRepository)
         {
-            this.productRepository = productRepository;
+            this.productService = productService;
             this.orderRepository = orderRepository;
-            
+            this.userInputRepository = userInputRepository; 
         }
-        
 
         public void ListUserInputOptions()
         {
@@ -40,79 +39,24 @@ namespace Petstore.UILogic
             Console.WriteLine("Type 'exit' to exit the program");
         }
 
+
+        public static string userinput {  get; set; }
         public void GetUserInput()
         {
-            string input = Console.ReadLine();
 
-            if (validUserInputs.Contains(input.ToLower()))
-            {
-
-                userInput = input;
-            }
-            else
-                
-            {
-                userInput = null;
-                Console.WriteLine("Enter 1,2,3 or type 'exit' to end the program.");
-            }
+            userinput = userInputRepository.GetInput();
         }
-
         public void ExecuteUserInput() 
         {
-            
-            
-                switch (userInput)
+                switch (userinput)
                 {
                     case "1":
-                    // Not going to worry about validation here for now
-                    // We need to store input (Name, Quantity, Description, etc) into the actual Product fields to ultimately a
-                    Console.WriteLine("Lets add a product to the db.");
-                    Product prod = new Product();
-
-                    Console.WriteLine("Insert product name:");
-                    prod.Name =  Console.ReadLine();
-
-                    //Console.WriteLine("Insert price");
-                    //prod.Price = decimal.Parse(Console.ReadLine()); 
-
-                    Console.WriteLine("Insert product quantity:");
-                    prod.Quantity = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Insert product description:");
-                    prod.Description = Console.ReadLine();
-                    prod.OrderId = 1;
-                    // productLogic.AddProduct(prod);
-                    
-
-                    productRepository.addProduct(prod);
-                    
-                    // productLogic.GetAllProducts();
+                        AddProduct();
                         break;
+                    
                     case "2":
-                        Console.WriteLine("Please enter Id of product");
-                    int productId = int.Parse(Console.ReadLine());
-                    var product = productRepository.getProductById(productId);
-
-                    try
-                    {
-                        if(product != null)
-                        {
-                            // We also might want to consider printing out the properties of the dogleash whos name we provided.
-                            Console.WriteLine($"Name: {product.Name}\n Price: {product.Price}\n Quantity: {product.Quantity}");
-                            Console.WriteLine($"Description: {product.Description}");
-                        }
-                        else
-                        {
-                            Console.WriteLine();
-                            Console.WriteLine("Product doesn't exist in our db. Select 2 again to try to insert a different name or view all products by pressing 8");
-                            userInput = null;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }   
-                    break;
+                        SearchProductById();
+                        break;
 
                     case "3":
                     var jsonOrder = JsonSerializer.Deserialize<Order>(Console.ReadLine());
@@ -120,14 +64,57 @@ namespace Petstore.UILogic
                     break;
 
                     case "exit":
-                    return;
+                        return;
+
                     default:
-                    break;
+                    Console.WriteLine("Please enter 1,2,3, or exit.");
+                        break;
                 }
             
             ListUserInputOptions();
-            GetUserInput();
             ExecuteUserInput();
-        }        
+        }    
+        
+        public void AddProduct()
+        {
+            Console.WriteLine("Lets add a product to the db.");
+
+            Product prod = new Product()
+            {
+                Name = userInputRepository.GetInput(),
+                Quantity = int.Parse(userInputRepository.GetInput()),
+                Description = userInputRepository.GetInput(),
+                OrderId = 1
+            };
+
+            productService.AddProduct(prod);
+        }
+
+        public void SearchProductById()
+        {
+            Console.WriteLine("Please enter Id of product");
+            int productId = int.Parse(userInputRepository.GetInput());
+            var product = productService.GetProductById(productId);
+
+            try
+            {
+                if (product != null)
+                {
+                    // We also might want to consider printing out the properties of the dogleash whos name we provided.
+                    Console.WriteLine($"Name: {product.Name}\n Price: {product.Price}\n Quantity: {product.Quantity}");
+                    Console.WriteLine($"Description: {product.Description}");
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Product doesn't exist in our db. Select 2 again to try to insert a different name or view all products by pressing 8");
+                    userinput = null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
