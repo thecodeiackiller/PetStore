@@ -21,6 +21,7 @@ namespace Petstore
             if (userInput != null)
             {
                 userInput.ListUserInputOptions();
+                userInput.GetUserInput();
                 userInput.ExecuteUserInput();
             }
         }
@@ -31,6 +32,7 @@ namespace Petstore
             newServiceCollection.AddTransient<IProductRepository,ProductRepository>(); 
             newServiceCollection.AddTransient<IOrderRepository, OrderRepository>();
             newServiceCollection.AddTransient<IProductService, ProductService>();
+            newServiceCollection.AddTransient<IUserInputRepository, UserInputRepository>();
 
             newServiceCollection.AddDbContext<ProductContext>(options => options.UseSqlite("Data Source=products.db"));
             return newServiceCollection.BuildServiceProvider();

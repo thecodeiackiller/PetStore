@@ -8,7 +8,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FluentValidation;
-using Petstore.Data;
 using Petstore.Data.Repositories;
 using Petstore.DogLeashValidator;
 using Petstore.Models;
@@ -72,6 +71,7 @@ namespace Petstore.UILogic
                 }
             
             ListUserInputOptions();
+            GetUserInput();
             ExecuteUserInput();
         }    
         

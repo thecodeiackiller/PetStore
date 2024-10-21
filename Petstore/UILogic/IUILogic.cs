@@ -9,6 +9,8 @@ namespace Petstore.UILogic
     internal interface IUILogic
     {
         public void ListUserInputOptions();
+
+        public void GetUserInput();
         public void ExecuteUserInput();
         
     }
