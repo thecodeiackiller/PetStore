@@ -10,4 +10,9 @@ In Week 1, I established the foundational structure of the PetStore application 
 
 In Week 2, I enhanced the PetStore application by implementing collections, specifically utilizing `List<Product>` and `Dictionary<string, DogLeash>`. I added functionality that allowed users to search for product names using dictionary key-value pairs, solidifying my understanding of collection manipulation. This included creating methods for adding products and retrieving details, reinforcing key programming concepts such as polymorphism and inheritance.
 
+# Week 3
+
+In Week 3, I focused on enhancing the PetStore application by implementing robust error handling and reinforcing object-oriented programming principles. I introduced a `try-catch` block in the `GetDogLeashByName` method within the `ProductLogic` class to manage potential exceptions, preventing application crashes when a product is not found. Additionally, I created a new `DryCatFood` class that inherits from `CatFood`, encapsulating properties specific to dry cat food, which improved the organization and clarity of the product attributes. The `Weight` property was relocated to this new class, demonstrating effective use of inheritance.
+
+
 
