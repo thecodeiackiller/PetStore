@@ -14,6 +14,8 @@ In Week 2, I enhanced the PetStore application by implementing collections, spec
 
 In Week 3, I advanced the PetStore application by implementing error handling and reinforcing object-oriented programming (OOP) principles. I wrapped the product retrieval method in the `ProductLogic` class with a try-catch block to handle exceptions gracefully, returning null when a product is not found. This prevents the application from crashing and enhances user experience. Additionally, I introduced the `DryCatFood` class, which inherits from the existing `CatFood` class, demonstrating the principles of inheritance and encapsulation. This structural organization of classes improves code maintainability and readability, essential aspects of OOP that employers highly value.
 
+# Week 4
 
+In Week 4, I enhanced the PetStore application by introducing interfaces and utilizing LINQ queries for data manipulation. I created the `IProductLogic` interface, specifying essential methods for the `ProductLogic` class, thus establishing a clear contract for implementation. This design promotes code maintainability and reusability. I implemented the `GetOnlyInStockProducts` method using LINQ to filter products with a quantity greater than zero, simplifying the logic with a single line: `return _products.Where(x => x.Quantity > 0).ToList();`. Additionally, I introduced UI options to display only in-stock products, showcasing how interfaces and LINQ can enhance application functionality and user experience.
 
 
