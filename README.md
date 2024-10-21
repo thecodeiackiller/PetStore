@@ -18,4 +18,7 @@ In Week 3, I advanced the PetStore application by implementing error handling an
 
 In Week 4, I enhanced the PetStore application by introducing interfaces and utilizing LINQ queries for data manipulation. I created the `IProductLogic` interface, specifying essential methods for the `ProductLogic` class, thus establishing a clear contract for implementation. This design promotes code maintainability and reusability. I implemented the `GetOnlyInStockProducts` method using LINQ to filter products with a quantity greater than zero, simplifying the logic with a single line: `return _products.Where(x => x.Quantity > 0).ToList();`. Additionally, I introduced UI options to display only in-stock products, showcasing how interfaces and LINQ can enhance application functionality and user experience.
 
+# Part 5
+
+In Week 5, I enhanced the PetStore application by implementing extension methods to improve code readability and maintainability. I created a static class `ListExtensions`, adding the `InStock<T>` method that checks for products in stock, leveraging generics for flexibility. This method simplifies the logic previously implemented in `ProductLogic`, promoting cleaner code practices. Additionally, I introduced a new method called `GetTotalPriceOfInventory`, utilizing the `InStock` method along with LINQ's `Select` and `Sum` to calculate the total inventory value. A new UI option was also added to access this functionality, showcasing the power of extension methods in enhancing existing classes.
 
