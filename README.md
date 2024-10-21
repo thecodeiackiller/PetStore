@@ -34,4 +34,27 @@ In Week 7, I implemented Dependency Injection (DI) in the PetStore application t
 
 In Week 8, I implemented JSON input handling and validation for the PetStore application, enhancing data integrity and usability. I modified Option 1 in the `Program` class to accept JSON input, utilizing the `System.Text.Json` NuGet package for deserialization. A sample JSON object was provided for testing, enabling users to input a `DogLeash` in a structured format. To ensure that all `DogLeash` properties meet defined criteria, I integrated the `FluentValidation` NuGet package and created a validation class in a new `Validators` folder. Validation rules included requiring the `Name` property, ensuring `Price` and `Quantity` are positive numbers, and setting a minimum character length for the `Description` property. I updated the `ProductLogic` class to use this validator, throwing a `ValidationException` when inputs do not conform to the rules. Additionally, I refactored the method for retrieving products to be generic, allowing it to handle various product types, including both `DogLeash` and `CatFood`, improving code reusability and maintainability.
 
+# Part 9
+
+In Week 9, I integrated Entity Framework Core into the PetStore application, enabling persistent data storage through a SQLite database. A new class library project, `PetStore.Data`, was created and linked to the main PetStore project. I added the `Microsoft.EntityFrameworkCore.Sqlite` NuGet package and established a `ProductContext` class as the `DbContext`. The `Product` class was updated to include a `ProductId` property, allowing for unique identification in the database.
+
+I implemented a `ProductRepository` class, which includes methods for adding products to the database, retrieving products by ID, and fetching all products. This repository was then registered as a transient service in the dependency injection container. In `ProductLogic`, I modified the constructor to accept the repository interface and updated the product management methods to utilize this repository for database operations instead of in-memory lists.
+
+As part of the cleanup process, I removed redundant classes and methods that were no longer necessary due to the shift to database storage. This included eliminating the `DogLeash`, `CatFood`, and `DryCatFood` classes, along with various methods in `ProductLogic`. I also ensured that the validator was updated to handle product validation, reinforcing data integrity before database insertion.
+
+Finally, I successfully tested the database integration by adding a product and verifying that it could be retrieved by its ID, confirming that the application is now capable of performing CRUD operations using Entity Framework Core.
+
+# Part 10
+
+In Week 10, I enhanced the PetStore application by adding a new entity relationship between `Order` and `Product` using Entity Framework Core. I created the `Order` entity with properties for `OrderId`, `OrderDate`, and a collection of `Product`. This involved adding a `DbSet<Order>` to the `ProductContext` class and establishing a foreign key relationship in the `Product` class through an `Order` navigation property and an `OrderId`.
+
+After implementing the entity relationships, I executed a migration and updated the database, ensuring that the schema reflected the new relationships correctly. I then added functionality to manage orders, including a new `OrderRepository` class that handles adding and retrieving orders. The `GetOrder` method utilizes `.Include(x => x.Products)` to load the associated products for each order.
+
+To test the new functionality, I created a JSON payload for adding orders and verified that the application successfully stored the data, with EF Core managing the relationships automatically.
+
+In addition to database updates, I set up a new project for unit testing, `PetStore.Tests`, using MSTest and the Moq library. I added a `ProductLogicTests` class with a unit test for the `GetProductById` method. This test involved setting up mock repositories to return fake data, executing the method under test, and asserting that the expected repository method was called correctly.
+
+Overall, this week focused on strengthening the application's data handling capabilities through effective use of Entity Framework Core and establishing unit testing practices to enhance code quality and maintainability.
+
+
 
