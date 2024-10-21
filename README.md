@@ -12,7 +12,8 @@ In Week 2, I enhanced the PetStore application by implementing collections, spec
 
 # Week 3
 
-In Week 3, I focused on enhancing the PetStore application by implementing robust error handling and reinforcing object-oriented programming principles. I introduced a `try-catch` block in the `GetDogLeashByName` method within the `ProductLogic` class to manage potential exceptions, preventing application crashes when a product is not found. Additionally, I created a new `DryCatFood` class that inherits from `CatFood`, encapsulating properties specific to dry cat food, which improved the organization and clarity of the product attributes. The `Weight` property was relocated to this new class, demonstrating effective use of inheritance.
+In Week 3, I advanced the PetStore application by implementing error handling and reinforcing object-oriented programming (OOP) principles. I wrapped the product retrieval method in the `ProductLogic` class with a try-catch block to handle exceptions gracefully, returning null when a product is not found. This prevents the application from crashing and enhances user experience. Additionally, I introduced the `DryCatFood` class, which inherits from the existing `CatFood` class, demonstrating the principles of inheritance and encapsulation. This structural organization of classes improves code maintainability and readability, essential aspects of OOP that employers highly value.
+
 
 
 
