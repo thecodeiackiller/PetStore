@@ -25,12 +25,12 @@ namespace Petstore.Services
                 throw new Exception("Product quantity must be greater than 0.");
             }
 
-            productRepository.addProduct(product);
+            productRepository.AddProduct(product);
         }
 
         public Product GetProductById(int id)
         {
-            var product = productRepository.getProductById(id);
+            var product = productRepository.GetProductById(id);
 
             if (product == null)
             {

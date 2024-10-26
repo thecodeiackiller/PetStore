@@ -10,7 +10,9 @@ namespace Petstore.Data.Repositories
     public interface IOrderRepository
     {
 
-        public void addOrder(Order order);
-        public Task<Order> retriveOrderById(int id);
+        public void AddOrder(Order order);
+        public Task<Order> RetriveOrderById(int id);
+
+        public Task<List<Order>> GetAllOrders();
     }
 }

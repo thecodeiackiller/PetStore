@@ -16,17 +16,5 @@ namespace Petstore.Data
         {
             Database.EnsureCreated();
         }
-
-        // If you want to use the path logic, we can still use the OnConfiguring method, but this is optional now
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured) // Prevent overriding if the options are already configured
-        //    {
-        //        var folder = Environment.SpecialFolder.LocalApplicationData;
-        //        var path = Environment.GetFolderPath(folder);
-        //        var dbPath = Path.Join(path, "products.db");
-        //        optionsBuilder.UseSqlite($"Data Source={dbPath}");
-        //    }
-        //}
     }
 }

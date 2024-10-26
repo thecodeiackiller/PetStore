@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Petstore.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Petstore.Data.Repositories
             _db = db;
         }
 
-        public void addProduct(Product prodEntity)
+        public void AddProduct(Product prodEntity)
         {
             _db.Products.Add(prodEntity);
             int result = _db.SaveChanges();
@@ -32,12 +33,12 @@ namespace Petstore.Data.Repositories
             }
 
         }
-        public List<Product> getAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            var products = _db.Products.ToList();
+            var products = await _db.Products.ToListAsync();
             return products;
         }
-        public Product getProductById(int productId)
+        public Product GetProductById(int productId)
         {
             var product = _db.Products.Where(e => e.Id == productId).FirstOrDefault();
 

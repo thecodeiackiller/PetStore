@@ -34,14 +34,14 @@ namespace PetStore.Test
             // Arrange: 
             _userInputRepository.Setup(x => x.GetInput()).Returns("10");
 
-            _productRepository.Setup(x => x.getProductById(10))
+            _productRepository.Setup(x => x.GetProductById(10))
                 .Returns(new Product { Id = 10, Name = "Test Product" });
 
             // Act
             _userInput.SearchProductById();
 
             // Assert
-            _productRepository.Verify(x => x.getProductById(10), Times.Once);
+            _productRepository.Verify(x => x.GetProductById(10), Times.Once);
 
             
         }

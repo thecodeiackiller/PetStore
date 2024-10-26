@@ -16,15 +16,20 @@ namespace Petstore.Data.Repositories
         {
             _db = db;
         }
-        public void addOrder(Order order)
+        public void AddOrder(Order order)
         {
             _db.Add(order);
             _db.SaveChanges();
         }
 
-        public async Task<Order> retriveOrderById(int id)
+        public async Task<Order> RetriveOrderById(int id)
         {
             return await _db.Orders.Include(e => e.Products).Where(e => e.OrderId == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Order>> GetAllOrders()
+        {
+            return await _db.Orders.ToListAsync();
         }
 
 

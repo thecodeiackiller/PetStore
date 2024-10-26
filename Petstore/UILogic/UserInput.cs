@@ -59,7 +59,7 @@ namespace Petstore.UILogic
 
                     case "3":
                     var jsonOrder = JsonSerializer.Deserialize<Order>(Console.ReadLine());
-                    orderRepository.addOrder(jsonOrder);
+                    orderRepository.AddOrder(jsonOrder);
                     break;
 
                     case "exit":
