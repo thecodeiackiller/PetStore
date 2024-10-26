@@ -56,5 +56,10 @@ In addition to database updates, I set up a new project for unit testing, `PetSt
 
 Overall, this week focused on strengthening the application's data handling capabilities through effective use of Entity Framework Core and establishing unit testing practices to enhance code quality and maintainability.
 
+# Part 11: API Functionality Implementation
+
+In this section, I successfully integrated API functionality into the PetStore application by creating a new Web API project within the same solution, allowing me to reference the existing Console application and its ProductContext. This approach streamlined the conversion process, circumventing the need to rely on an outdated tutorial for transforming a Console Application into a Web API. I implemented two controllers, each featuring GET requests to retrieve product and order data.
+
+Throughout this process, I gained a deeper understanding of `IActionResult`, recognizing that actions in an ASP.NET controller are analogous to handlers in Spring. I also expanded my knowledge of various HTTP status codes, particularly those automatically returned by the `System.Http` namespace. With the core functionality established, I plan to implement POST methods in the future to enhance the API’s capabilities.
 
 
