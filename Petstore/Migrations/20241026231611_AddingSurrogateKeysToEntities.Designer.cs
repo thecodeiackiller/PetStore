@@ -6,15 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petstore.Data;
 
-
-
 #nullable disable
 
 namespace Petstore.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20241013161157_NewMigrationWithOrders")]
-    partial class NewMigrationWithOrders
+    [Migration("20241026231611_AddingSurrogateKeysToEntities")]
+    partial class AddingSurrogateKeysToEntities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +28,9 @@ namespace Petstore.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("OrderNumber")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("OrderId");
 
@@ -55,6 +56,9 @@ namespace Petstore.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ProductNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");

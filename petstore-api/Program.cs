@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Petstore;
 using Petstore.Data;
 using Petstore.Data.Repositories;
 using Petstore.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,7 @@ builder.Services.AddTransient<IProductService, ProductService>();
 
 var connectionString = @"Data Source=C:\Users\knunn\Documents\Projects\PetShop\Petstore\bin\Debug\net8.0\products.db";
 builder.Services.AddDbContext<ProductContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddAutoMapper(typeof(OrderProfile).Assembly);
 
 
 builder.Services.AddControllers();

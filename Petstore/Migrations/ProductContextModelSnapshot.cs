@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petstore.Data;
 
-
-
 #nullable disable
 
 namespace Petstore.Migrations
@@ -27,6 +25,9 @@ namespace Petstore.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("OrderNumber")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("OrderId");
 
@@ -52,6 +53,9 @@ namespace Petstore.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ProductNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
