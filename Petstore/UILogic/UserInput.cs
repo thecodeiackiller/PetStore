@@ -94,22 +94,26 @@ namespace Petstore.UILogic
         {
             Console.WriteLine("Please enter Id of product");
             int productId = int.Parse(userInputRepository.GetInput());
-            var product = productService.GetProductById(productId);
+            var products = productService.GetProductByProductNumber(productId);
 
             try
             {
-                if (product != null)
+                foreach (var product in products)
                 {
-                    // We also might want to consider printing out the properties of the dogleash whos name we provided.
-                    Console.WriteLine($"Name: {product.Name}\n Price: {product.Price}\n Quantity: {product.Quantity}");
-                    Console.WriteLine($"Description: {product.Description}");
+                    if (products != null)
+                    {
+                        // We also might want to consider printing out the properties of the dogleash whos name we provided.
+                        Console.WriteLine($"Name: {product.Name}\n Price: {product.Price}\n Quantity: {product.Quantity}");
+                        Console.WriteLine($"Description: {product.Description}");
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Product doesn't exist in our db. Select 2 again to try to insert a different name or view all products by pressing 8");
+                        userinput = null;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Product doesn't exist in our db. Select 2 again to try to insert a different name or view all products by pressing 8");
-                    userinput = null;
-                }
+
             }
             catch (Exception e)
             {

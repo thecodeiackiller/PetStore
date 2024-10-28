@@ -22,9 +22,9 @@ namespace Petstore.Data.Repositories
             _db.SaveChanges();
         }
 
-        public async Task<Order> RetriveOrderById(int id)
+        public async Task<Order> RetriveOrderByOrderNum(int orderNum)
         {
-            return await _db.Orders.Include(e => e.Products).Where(e => e.OrderId == id).FirstOrDefaultAsync();
+            return await _db.Orders.Include(e => e.Products).Where(e => e.OrderNumber == orderNum).FirstOrDefaultAsync();
         }
 
         public async Task<List<Order>> GetAllOrders()

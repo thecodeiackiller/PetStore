@@ -11,7 +11,7 @@ namespace Petstore.Data.Repositories
     {
 
         public void AddOrder(Order order);
-        public Task<Order> RetriveOrderById(int id);
+        public Task<Order> RetriveOrderByOrderNum(int id);
 
         public Task<List<Order>> GetAllOrders();
     }

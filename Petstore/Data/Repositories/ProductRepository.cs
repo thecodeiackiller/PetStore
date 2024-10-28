@@ -49,5 +49,10 @@ namespace Petstore.Data.Repositories
             return null;
 
         }
+
+        public List<Product> GetProductsByProductNumber(int productNumber)
+        {
+            return _db.Products.Where(e => e.ProductNumber == productNumber).ToList();
+        }
     }
 }

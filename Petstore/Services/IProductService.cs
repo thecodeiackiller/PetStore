@@ -10,6 +10,6 @@ namespace Petstore.Services
     public interface IProductService
     {
         void AddProduct(Product product);
-        Product GetProductById(int id);
+        List<Product> GetProductByProductNumber(int id);
     }
 }

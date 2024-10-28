@@ -12,7 +12,7 @@ namespace petstore_api.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
-        public OrdersController(IOrderRepository orderRepository, IMapper mapper) 
+        public OrdersController(IOrderRepository orderRepository, IMapper mapper)
         {
             this._orderRepository = orderRepository;
             this._mapper = mapper;
@@ -32,5 +32,20 @@ namespace petstore_api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+    //    [HttpGet("{orderNum:int}")]
+    //    public async Task<ActionResult<OrderDTO>> GetOrderByOrderNumber(int orderNum)
+    //{
+    //    try
+    //    {
+    //            var orderDto = await _orderRepository.RetriveOrderByOrderNum(orderNum);
+    //            return Ok(orderDto);
+    //    }
+    //    catch (Exception) 
+    //    {
+    //            return this.StatusCode(StatusCodes.Status500InternalServerError, "The database fucking failed on you");
+    //    }
+    //}
     }
 }

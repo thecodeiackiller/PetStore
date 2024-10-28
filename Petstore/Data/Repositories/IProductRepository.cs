@@ -10,7 +10,7 @@ namespace Petstore.Data.Repositories
     public interface IProductRepository
     {
         public void AddProduct(Product product);
-        public Product GetProductById(int productId);
+        public List<Product> GetProductsByProductNumber(int productId);
         public Task<List<Product>> GetAllProducts();
 
     }

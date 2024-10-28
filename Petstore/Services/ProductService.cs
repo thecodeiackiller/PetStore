@@ -28,16 +28,16 @@ namespace Petstore.Services
             productRepository.AddProduct(product);
         }
 
-        public Product GetProductById(int id)
+        public List<Product> GetProductByProductNumber(int number)
         {
-            var product = productRepository.GetProductById(id);
+            var products = productRepository.GetProductsByProductNumber(number);
 
-            if (product == null)
+            if (products == null)
             {
                 Console.WriteLine("Product not found.");
             }
 
-            return product;
+            return products;
         }
     }
 }

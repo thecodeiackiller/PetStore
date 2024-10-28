@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Petstore;
 using Petstore.Data;
 using Petstore.Data.Repositories;
+using Petstore.MappingProfiles;
 using Petstore.Services;
 using System.Reflection;
 

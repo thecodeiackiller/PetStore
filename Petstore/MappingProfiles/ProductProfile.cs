@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Petstore
-{
-    public class OrderProfile : Profile
-    {
-        public OrderProfile() 
-        {
-            this.CreateMap<Order,OrderDTO>();
-        }
 
+namespace Petstore.MappingProfiles
+{
+    public class ProductProfile : Profile
+    {
+        public ProductProfile() 
+        {
+            CreateMap<Product, ProductDTO>();
+        }
     }
 }
